@@ -1,3 +1,30 @@
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    star = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . b b . . . . . . . 
+        . . . . . . b 5 5 b . . . . . . 
+        . . . b b b 5 5 1 1 b b b . . . 
+        . . . b 5 5 5 5 1 1 5 5 b . . . 
+        . . . . b d 5 5 5 5 d b . . . . 
+        . . . . c b 5 5 5 5 b c . . . . 
+        . . . . c 5 d d d d 5 c . . . . 
+        . . . . c 5 d c c d 5 c . . . . 
+        . . . . c c c . . c c c . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Projectile)
+    star.setPosition(smiley.x, smiley.y)
+    star.setVelocity(200, 0)
+})
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    smiley.vy = -139
+})
+let star: Sprite = null
+let smiley: Sprite = null
 tiles.setCurrentTilemap(tilemap`level2`)
 scene.setBackgroundImage(img`
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999955555999999555555555555555555555999999
@@ -121,7 +148,7 @@ scene.setBackgroundImage(img`
     7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
     7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
     `)
-let smiley = sprites.create(img`
+smiley = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . 5 5 5 5 5 5 . . . . . . . . 
@@ -139,3 +166,6 @@ let smiley = sprites.create(img`
     . . 5 e 5 5 2 e . . . . . . . . 
     . . . 5 e e e . . . . . . . . . 
     `, SpriteKind.Player)
+controller.moveSprite(smiley, 100, 0)
+scene.cameraFollowSprite(smiley)
+smiley.ay = 200
