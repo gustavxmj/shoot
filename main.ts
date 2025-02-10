@@ -1,3 +1,9 @@
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile0`, function (sprite, location) {
+    game.gameOver(true)
+})
+scene.onOverlapTile(SpriteKind.Projectile, sprites.castle.tilePath2, function (sprite, location) {
+    sprites.destroy(sprite)
+})
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     star = sprites.create(img`
         . . . . . . . . . . . . . . . . 
@@ -19,13 +25,54 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         `, SpriteKind.Projectile)
     star.setPosition(smiley.x, smiley.y)
     star.setVelocity(200, 0)
+    star.setFlag(SpriteFlag.GhostThroughWalls, true)
+})
+scene.onOverlapTile(SpriteKind.Projectile, assets.tile`myTile`, function (sprite, location) {
+    tiles.setTileAt(location, assets.tile`transparency16`)
+    tiles.setWallAt(location, false)
+    sprites.destroy(sprite)
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    smiley.vy = -139
+    smiley.vy = -140
+})
+scene.onOverlapTile(SpriteKind.Projectile, sprites.castle.tilePath3, function (sprite, location) {
+    sprites.destroy(sprite)
+})
+scene.onOverlapTile(SpriteKind.Projectile, sprites.castle.tilePath7, function (sprite, location) {
+    sprites.destroy(sprite)
+})
+scene.onOverlapTile(SpriteKind.Projectile, sprites.castle.tilePath1, function (sprite, location) {
+    sprites.destroy(sprite)
+})
+scene.onOverlapTile(SpriteKind.Projectile, sprites.castle.tilePath4, function (sprite, location) {
+    sprites.destroy(sprite)
+})
+scene.onOverlapTile(SpriteKind.Projectile, sprites.castle.tilePath9, function (sprite, location) {
+    sprites.destroy(sprite)
+})
+scene.onOverlapTile(SpriteKind.Projectile, sprites.castle.tilePath6, function (sprite, location) {
+    sprites.destroy(sprite)
+})
+function make_Blueberry_Jam () {
+    for (let value of tiles.getTilesByType(assets.tile`transparency16`)) {
+    	
+    }
+}
+function make_walls () {
+    for (let value of tiles.getTilesByType(assets.tile`myTile`)) {
+        tiles.setWallAt(value, true)
+    }
+}
+scene.onOverlapTile(SpriteKind.Projectile, sprites.castle.tilePath5, function (sprite, location) {
+    sprites.destroy(sprite)
+})
+scene.onOverlapTile(SpriteKind.Projectile, sprites.castle.tilePath8, function (sprite, location) {
+    sprites.destroy(sprite)
 })
 let star: Sprite = null
 let smiley: Sprite = null
 tiles.setCurrentTilemap(tilemap`level2`)
+make_walls()
 scene.setBackgroundImage(img`
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999955555999999555555555555555555555999999
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999955555999955555555555555555555555999555
