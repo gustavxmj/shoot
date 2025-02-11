@@ -1,9 +1,108 @@
 namespace SpriteKind {
     export const BlueberryJam = SpriteKind.create()
+    export const CoinKind = SpriteKind.create()
 }
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile0`, function (sprite, location) {
     game.gameOver(true)
 })
+function make_coins () {
+    for (let value of tiles.getTilesByType(assets.tile`myTile1`)) {
+        coin = sprites.create(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, SpriteKind.CoinKind)
+        animation.runImageAnimation(
+        coin,
+        [img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . 5 . . . . . . . . 
+            . . . 5 5 5 5 5 5 . . . . . . . 
+            . . . 5 5 5 5 5 5 5 5 . . . . . 
+            . . 5 5 5 5 5 5 5 5 5 5 . . . . 
+            . . 5 5 5 . 5 . . 5 5 5 . . . . 
+            . . 5 5 5 5 5 . . . 5 5 . . . . 
+            . . 5 5 5 5 5 . . . 5 5 . . . . 
+            . . 5 5 5 5 5 . . . 5 5 . . . . 
+            . . 5 5 5 5 5 . . 5 5 5 . . . . 
+            . . . 5 5 5 5 5 5 5 5 5 . . . . 
+            . . . . 5 5 5 5 5 5 5 . . . . . 
+            . . . . . 5 5 5 5 5 . . . . . . 
+            . . . . . . 5 5 5 . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `,img`
+            . . . . . . . . . 5 . . . . . . 
+            . . . . . . . 5 5 5 . . . . . . 
+            . . . 5 5 5 5 5 5 5 . . . . . . 
+            . . . 5 5 5 5 5 5 5 5 . . . . . 
+            . . 5 5 5 5 5 5 5 5 5 5 . . . . 
+            . . 5 5 5 5 5 5 . 5 5 5 . . . . 
+            . . 5 5 5 5 5 5 . . 5 5 . . . . 
+            . . 5 5 5 5 5 5 . . 5 5 . . . . 
+            . . 5 5 5 5 5 5 . 5 5 5 . 5 5 . 
+            . . 5 5 5 5 5 5 5 5 5 5 5 . 5 . 
+            . . . 5 5 5 5 5 5 5 5 5 . 5 . . 
+            . . . . 5 5 5 5 5 5 5 5 5 . . . 
+            . . . . . 5 5 5 5 5 5 . . . . . 
+            . . . . . . 5 5 5 . 5 . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `,img`
+            . . . . 5 5 . . . 5 5 5 5 5 5 . 
+            . . 5 5 5 5 5 5 5 5 . . . . 5 5 
+            5 5 . 5 5 5 5 5 5 5 . . . . . 5 
+            5 . . 5 5 5 5 5 5 5 5 . . . . 5 
+            5 . 5 5 5 5 5 5 5 5 5 5 . . . 5 
+            5 . 5 5 5 5 5 5 . 5 5 5 . . . 5 
+            5 5 5 5 5 5 5 5 . . 5 5 . . . 5 
+            5 . 5 5 5 5 5 5 . . 5 5 . . . 5 
+            5 . 5 5 5 5 5 5 . 5 5 5 . 5 5 5 
+            5 . 5 5 5 5 5 5 5 5 5 5 5 . 5 5 
+            5 . . 5 5 5 5 5 5 5 5 5 . 5 . 5 
+            5 . . . 5 5 5 5 5 5 5 5 5 5 5 5 
+            . 5 5 . . 5 5 5 5 5 5 . . . . 5 
+            . . . 5 5 5 5 5 5 . 5 . . 5 5 . 
+            . . . . . . 5 5 5 5 5 5 5 . . . 
+            . . . . . . . . . . . . . . . . 
+            `,img`
+            . . . . 5 5 . . . 5 5 5 5 5 5 . 
+            . . 5 5 5 5 5 5 5 5 . . 5 5 5 5 
+            5 5 . 5 5 5 5 5 5 5 . . 5 5 . 5 
+            5 5 . 5 5 5 5 5 5 5 5 . 5 . . 5 
+            5 5 5 5 5 5 5 5 5 5 5 5 5 . . 5 
+            5 5 5 5 5 5 5 5 5 5 5 5 5 . . 5 
+            5 5 5 5 5 5 5 5 5 . 5 5 5 . . 5 
+            5 5 5 5 5 5 5 5 5 . 5 5 5 . . 5 
+            5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
+            5 5 5 5 5 5 5 5 5 5 5 5 5 . 5 5 
+            5 5 . 5 5 5 5 5 5 5 5 5 . 5 . 5 
+            5 5 . 5 5 5 5 5 5 5 5 5 5 5 5 5 
+            . 5 5 . 5 5 5 5 5 5 5 5 . . . 5 
+            . . 5 5 5 5 5 5 5 . 5 5 . 5 5 . 
+            . . 5 . 5 . 5 5 5 5 5 5 5 . . . 
+            . . 5 . 5 5 5 5 5 5 5 5 . . . . 
+            `],
+        500,
+        true
+        )
+        tiles.placeOnTile(coin, value)
+        tiles.setTileAt(value, assets.tile`transparency16`)
+    }
+}
 scene.onOverlapTile(SpriteKind.Projectile, sprites.castle.tilePath2, function (sprite, location) {
     sprites.destroy(sprite)
 })
@@ -44,6 +143,9 @@ scene.onOverlapTile(SpriteKind.Projectile, sprites.castle.tilePath3, function (s
 scene.onOverlapTile(SpriteKind.Projectile, sprites.castle.tilePath7, function (sprite, location) {
     sprites.destroy(sprite)
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.BlueberryJam, function (sprite, otherSprite) {
+    game.gameOver(false)
+})
 scene.onOverlapTile(SpriteKind.Projectile, sprites.castle.tilePath1, function (sprite, location) {
     sprites.destroy(sprite)
 })
@@ -52,9 +154,6 @@ scene.onOverlapTile(SpriteKind.Projectile, sprites.castle.tilePath4, function (s
 })
 scene.onOverlapTile(SpriteKind.Projectile, sprites.castle.tilePath9, function (sprite, location) {
     sprites.destroy(sprite)
-})
-scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile2`, function (sprite, location) {
-    game.gameOver(false)
 })
 scene.onOverlapTile(SpriteKind.Projectile, sprites.castle.tilePath6, function (sprite, location) {
     sprites.destroy(sprite)
@@ -136,9 +235,11 @@ scene.onOverlapTile(SpriteKind.Projectile, sprites.castle.tilePath8, function (s
 })
 let blueberry: Sprite = null
 let star: Sprite = null
+let coin: Sprite = null
 let smiley: Sprite = null
 tiles.setCurrentTilemap(tilemap`level2`)
 make_Blueberry_Jam()
+make_coins()
 make_walls()
 scene.setBackgroundImage(img`
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999955555999999555555555555555555555999999
