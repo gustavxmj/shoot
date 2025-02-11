@@ -1,3 +1,6 @@
+namespace SpriteKind {
+    export const BlueberryJam = SpriteKind.create()
+}
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile0`, function (sprite, location) {
     game.gameOver(true)
 })
@@ -50,12 +53,74 @@ scene.onOverlapTile(SpriteKind.Projectile, sprites.castle.tilePath4, function (s
 scene.onOverlapTile(SpriteKind.Projectile, sprites.castle.tilePath9, function (sprite, location) {
     sprites.destroy(sprite)
 })
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile2`, function (sprite, location) {
+    game.gameOver(false)
+})
 scene.onOverlapTile(SpriteKind.Projectile, sprites.castle.tilePath6, function (sprite, location) {
     sprites.destroy(sprite)
 })
 function make_Blueberry_Jam () {
-    for (let value of tiles.getTilesByType(assets.tile`transparency16`)) {
-    	
+    for (let value of tiles.getTilesByType(assets.tile`myTile2`)) {
+        blueberry = sprites.create(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, SpriteKind.BlueberryJam)
+        animation.runImageAnimation(
+        blueberry,
+        [img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            1 1 1 1 . 1 1 1 1 1 . 1 1 1 1 1 
+            a a a 1 1 1 a a a 1 1 1 a a a 1 
+            a a a a a a a 1 1 a a a a a a a 
+            a a a 1 1 a a 1 1 a a a a a 1 1 
+            1 a 1 1 a 1 a a a a a 5 a 1 1 a 
+            1 a 1 a a 1 a a a a 5 a a 1 a a 
+            a a a 1 1 a a 1 1 a a a a a 1 1 
+            a a a a a a 1 1 a 1 a a a a a a 
+            a a a 5 a a 1 a a 1 a a 1 1 a a 
+            a a a a 5 a a 1 1 a a a 1 1 a a 
+            a 5 1 1 a a a a a a a a a a a a 
+            5 a 1 1 a a a a a 1 1 a a a a a 
+            a a a a a a a a a 1 1 a a a a a 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . 1 . . . . 1 1 . . . . 1 . . 
+            . 1 a 1 . . 1 a a 1 . . 1 a 1 . 
+            1 5 a a 1 . 1 a a 1 . 1 1 a 1 . 
+            1 a 5 a 1 . 1 5 a 1 . 1 a a 1 . 
+            1 a a a 1 1 1 a 5 1 1 1 a a a 1 
+            a a 1 1 a a a a a a a a a a a a 
+            a a 1 1 a a 1 1 a a a a 1 1 a a 
+            a a a a a 1 1 a 1 a a a 1 1 a a 
+            a 5 a 5 a 1 a a 1 a a 5 a a a a 
+            5 a a a 5 a 1 1 a a 5 a a a 5 a 
+            a a 1 1 a a a a a a a 1 1 a a 5 
+            a a 1 1 a a 1 1 a a 1 1 a 1 a a 
+            a a a a a 1 1 a 1 a 1 a a 1 a a 
+            1 1 a 5 a 1 a a 1 a a 1 1 a a a 
+            1 1 a a 5 a 1 1 a a a a a a a a 
+            `],
+        500,
+        true
+        )
+        tiles.placeOnTile(blueberry, value)
+        tiles.setTileAt(value, assets.tile`transparency16`)
     }
 }
 function make_walls () {
@@ -69,9 +134,11 @@ scene.onOverlapTile(SpriteKind.Projectile, sprites.castle.tilePath5, function (s
 scene.onOverlapTile(SpriteKind.Projectile, sprites.castle.tilePath8, function (sprite, location) {
     sprites.destroy(sprite)
 })
+let blueberry: Sprite = null
 let star: Sprite = null
 let smiley: Sprite = null
 tiles.setCurrentTilemap(tilemap`level2`)
+make_Blueberry_Jam()
 make_walls()
 scene.setBackgroundImage(img`
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999955555999999555555555555555555555999999
