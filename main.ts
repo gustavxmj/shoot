@@ -134,6 +134,10 @@ scene.onOverlapTile(SpriteKind.Projectile, assets.tile`myTile`, function (sprite
     tiles.setWallAt(location, false)
     sprites.destroy(sprite)
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.CoinKind, function (sprite, otherSprite) {
+    info.changeScoreBy(1)
+    sprites.destroy(otherSprite)
+})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     smiley.vy = -140
 })
