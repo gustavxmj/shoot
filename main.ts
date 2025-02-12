@@ -3,7 +3,8 @@ namespace SpriteKind {
     export const CoinKind = SpriteKind.create()
 }
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile0`, function (sprite, location) {
-    game.gameOver(true)
+    level += 1
+    make_levels()
 })
 function make_coins () {
     for (let value of tiles.getTilesByType(assets.tile`myTile1`)) {
@@ -525,17 +526,16 @@ function make_levels () {
     } else if (level == 3) {
     	
     }
+    make_Blueberry_Jam()
+    make_coins()
+    make_walls()
+    tiles.placeOnRandomTile(smiley, assets.tile`myTile4`)
 }
 let blueberry: Sprite = null
 let star: Sprite = null
 let coin: Sprite = null
-let smiley: Sprite = null
 let level = 0
-level = 0
-make_levels()
-make_Blueberry_Jam()
-make_coins()
-make_walls()
+let smiley: Sprite = null
 smiley = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -557,3 +557,5 @@ smiley = sprites.create(img`
 controller.moveSprite(smiley, 100, 0)
 scene.cameraFollowSprite(smiley)
 smiley.ay = 200
+level = 0
+make_levels()
